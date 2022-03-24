@@ -1,74 +1,57 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components'
-
-enum ButtonViewStatesEnum {
-  default = 'default',
-  hover = 'hover',
-  active = 'active',
-  disable = 'disable',
-  loading = 'loading',
-}
-
-interface ButtonContainerIface {
-  width: null | string
-  ButtonViewState: ButtonViewStatesEnum
-}
-
-const ButtonContainer = styled.button<ButtonContainerIface>`
-  font-size: 14px;
-  box-sizing: border-box;
-  padding: 18px 20px;
-  border-radius: 8px;
-  outline: 0;
-  border: none;
-  width: ${({width}) => width ? width : "156px"};
-  ${({ButtonViewState = ButtonViewStatesEnum.default}) => { 
-      switch (ButtonViewState) {
-        case ButtonViewStatesEnum.default:
-          return css`
-            background-color: #0086A8;
-            color: #fff;
-          `
-        case ButtonViewStatesEnum.hover:
-          return css`
-            background-color: #007693;
-            color: #fff;
-            cursor: pointer;
-          `
-        case ButtonViewStatesEnum.active:
-          return css`
-            background-color: #00657E;
-            color: #fff;
-          `
-        case ButtonViewStatesEnum.disable:
-          return css`
-            background-color: #E3E3E3;
-            color: #828282;
-          `
-        case ButtonViewStatesEnum.loading:
-          return css`
-            background-color: #0086A8;
-            color: #fff;
-          `
-      }
-    }
-  };
-`
+import logo from './loader.gif';
 
 interface Props {
-    width: string
-    text: string
+  width?: string
+  text: string
+  loading: boolean
+  disabled: boolean
 }
 
-
-const Button: FC<Props> = ({width, text}) => {
+const Button: FC<Props> = ({width, disabled, loading, text}) => {
   return (
       <>
-        <ButtonContainer width={width} ButtonViewState={ButtonViewStatesEnum.disable}>
-            {text}
+        <ButtonContainer width={width ? width : "400px"} loading={loading} disabled={disabled||loading}>
+            {loading ? <img width="30px" src={logo} alt="loading..." /> : text}
+          
         </ButtonContainer>
       </>
     )
 }
 
 export default Button
+
+interface ButtonContainerIface {
+  width: null | string
+  loading: boolean
+}
+
+const ButtonContainer = styled.button<ButtonContainerIface>`
+  font-size: 14px;
+  height: 50px;
+  width: ${({width}) => width ? width : "156px"};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  outline: 0;
+  border: none;
+  
+  background-color: #0086A8;
+  color: #fff;
+  &:hover{
+    background-color: #007693;
+    cursor: pointer;
+  };
+  &:active{
+    background-color: #00657E;
+  };
+  &:disabled{
+    background-color: #E3E3E3;
+    color: #828282;
+    cursor: initial
+  };
+  ${({loading}) => loading ? `background-color: #0086A8!important; color: #fff!important;` : ``};
+`
