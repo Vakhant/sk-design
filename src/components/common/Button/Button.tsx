@@ -12,22 +12,22 @@ interface Props {
 const Button: FC<Props> = ({width, disabled, loading, text}) => {
   return (
       <>
-        <ButtonContainer width={width ? width : "400px"} loading={loading} disabled={disabled||loading}>
+        <ButtonBox width={width ? width : "400px"} loading={loading} disabled={disabled||loading}>
             {loading ? <img width="30px" src={logo} alt="loading..." /> : text}
           
-        </ButtonContainer>
+        </ButtonBox>
       </>
     )
 }
 
 export default Button
 
-interface ButtonContainerIface {
+interface ButtonBoxIface {
   width: null | string
   loading: boolean
 }
 
-const ButtonContainer = styled.button<ButtonContainerIface>`
+const ButtonBox = styled.button<ButtonBoxIface>`
   font-size: 14px;
   height: 50px;
   width: ${({width}) => width ? width : "156px"};
