@@ -3,22 +3,22 @@ import styled from 'styled-components';
 import { Option } from './Option';
 
 interface Props {
-    selectFocused: any
+    active: boolean
+    isOptionChousen: any
     citieslist: Array<{id:string, name:string}>
     setSelectValue: any
-    setFocusSelect: any
+    setOptionChousen: any
 }    
 
-export const OptionList: FC<Props> = ({citieslist, selectFocused, setSelectValue, setFocusSelect}) => {
+export const OptionList: FC<Props> = ({active, citieslist, isOptionChousen, setSelectValue, setOptionChousen}) => {
     return (
-        <OptionListBox citieslist={citieslist} selectFocused={selectFocused} >
-                {selectFocused?"true":"false"}
+        <OptionListBox active={active} citieslist={citieslist} isOptionChousen={isOptionChousen} >
+                {/* {active?"true":"false"} */}
                 {citieslist.map(option=> 
                 <Option 
-                setFocusSelect={setFocusSelect}
+                setOptionChousen={setOptionChousen}
                 setSelectValue={setSelectValue}
                 key={option.id}
-                id={option.id}
                 name={option.name}
                 />)
             }
@@ -27,10 +27,29 @@ export const OptionList: FC<Props> = ({citieslist, selectFocused, setSelectValue
 }
 
 interface OptionListIface {
-    selectFocused: boolean
+    active: boolean
+    isOptionChousen: any
     citieslist: Array<{id:string, name:string}>
 }
   
 const OptionListBox = styled.div<OptionListIface>`
-    
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 2px solid #E3E3E3;
+    top: 60px;
+    box-shadow: 0 20px 30px rgba(0,0,0,.2);
+    z-index: 5;
+    ${({active}) => active ? `
+        opacity: 1;
+        visibility: visible;
+        transition: top .3s 0s, opacity .3s 0s, visibility 0s 0s;
+    ` : `
+        opacity: 0;
+        visibility: hidden;
+        transition: top .3s 0s, opacity .3s 0s, visibility 0s .3s;
+    `}
 `

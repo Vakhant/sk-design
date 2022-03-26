@@ -43,6 +43,7 @@ const InputBox = styled.div<InputIface>`
       color: #828282;
       padding: 0 5px;
       font-size: 12px;
+      border-radius: 5px;
   }
   input{
       font-size: 14px;
@@ -51,6 +52,7 @@ const InputBox = styled.div<InputIface>`
       border-radius: 8px;
       outline: 0;
       width: 300px;
+    color: #353238;
       &:focus{
           border-color: #0086A8;
       };

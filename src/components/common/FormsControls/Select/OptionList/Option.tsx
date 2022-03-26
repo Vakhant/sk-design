@@ -2,25 +2,29 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-    id?: string
-    name?: string
+    name: string
     setSelectValue: any
-    setFocusSelect: any
+    setOptionChousen: any
 }
 
-export const Option: FC<Props> = ({id, name, setSelectValue, setFocusSelect}) => {
+export const Option: FC<Props> = ({ name, setSelectValue, setOptionChousen}) => {
     return (
-        <OptionBox id={id} name={name} onMouseDown={()=>{setSelectValue(name); setFocusSelect(true)}}>
+        <OptionBox onMouseDown={()=>{setSelectValue(name); setOptionChousen(true)}}>
             {name}
         </OptionBox>
     )
 }
 
-interface OptionBoxIface {
-    id?: string
-    name?: string
-}
-
-const OptionBox = styled.div<OptionBoxIface>`
-    ${({name})=>name?name:''}
+const OptionBox = styled.div`
+    border-bottom: 2px solid #E3E3E3;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: .1s;
+    &:hover{
+        background-color: #FAFAFA;
+    }
+    &:last-child{
+        border-bottom: 0;
+    }
 `

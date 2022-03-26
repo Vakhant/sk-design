@@ -29,8 +29,8 @@ interface ReduxFormBaseProps{
     ]
     return (
     <form onSubmit={props.handleSubmit}>
+      <Field validate={[requiredField]} id={'Qeq'} component={Select} name={'Cities'}  citieslist={citiesList}/>
       <Field validate={[requiredField]} id={'fullName'} component={Input} name={'fullName'} type="text" placeholder=""/>
-      <Field validate={[requiredField]} component={Select} name={'Cities'}  citieslist={citiesList}/>
       <button>sdf</button>
     </form>
     )
