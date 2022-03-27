@@ -21,6 +21,7 @@ const OptionBox = styled.div`
     cursor: pointer;
     background-color: #fff;
     transition: .1s;
+    text-align: center;
     &:hover{
         background-color: #FAFAFA;
     }

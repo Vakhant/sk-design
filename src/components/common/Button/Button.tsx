@@ -3,27 +3,22 @@ import styled, { css } from 'styled-components'
 import logo from './loader.gif';
 
 interface Props {
-  width?: string
+  width?: string | undefined
   text: string
   loading: boolean
   disabled: boolean
 }
 
 const Button: FC<Props> = ({width, disabled, loading, text}) => {
-  return (
-      <>
-        <ButtonBox width={width ? width : "400px"} loading={loading} disabled={disabled||loading}>
+  return <ButtonBox width={width} loading={loading} disabled={disabled||loading}>
             {loading ? <img width="30px" src={logo} alt="loading..." /> : text}
-          
         </ButtonBox>
-      </>
-    )
 }
 
 export default Button
 
 interface ButtonBoxIface {
-  width: null | string
+  width: string | undefined
   loading: boolean
 }
 
@@ -53,5 +48,5 @@ const ButtonBox = styled.button<ButtonBoxIface>`
     color: #828282;
     cursor: initial
   };
-  ${({loading}) => loading ? `background-color: #0086A8!important; color: #fff!important;` : ``};
+  ${({loading}) => loading && `background-color: #0086A8!important; color: #fff!important;`};
 `

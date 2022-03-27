@@ -2,38 +2,30 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { SVGSelectArrow } from '../../../../assets/img/SVGSelectArrow';
 import { OptionList } from './OptionList/OptionList';
+import { MainFormInputsProps } from '../../../../types/types';
 
-interface Props {
-    input: any
-    meta: {
-        active: boolean
-        touched: boolean
-        error: string | false
-    }
-    disabled?: boolean
-    id: string
-    label?: string
-    citieslist: Array<{id:string, name:string}>
+interface SelectProps {
+    optionList: Array<{id:string, name:string}>
     readonly: boolean
 }
-    
 
-export const Select: FC<Props> = ({input, meta: {active, touched, error}, id, label, citieslist, ...props}) => {
+
+export const Select: FC<MainFormInputsProps & SelectProps> = 
+({isValidate, input, meta: {active, touched, error}, id, label, optionList, ...props}) => {
     let [isOptionChousen, setOptionChousen] = useState(false)
     let [selectValue, setSelectValue] = useState("")
 
     const hasError = touched && error && !isOptionChousen;
-    const labelTime = !touched || hasError;
+    const labelTime = (!touched || !error && !isOptionChousen) && !active;
 
-    return (<>
-        <SelectBox active={active} labelTime={labelTime} hasError={hasError}>
+    return (
+        <SelectBox error={error} isValidate={isValidate} active={active} labelTime={labelTime} hasError={hasError}>
             <input {...input} {...props} id={id} value={selectValue} readOnly={true}></input>
             <label htmlFor={id}>{label?label:'От куда узнали про нас?'}</label>
             <SVGSelectArrow active={active}/>
-            <OptionList active={active} isOptionChousen={isOptionChousen} citieslist={citieslist} setSelectValue={setSelectValue} setOptionChousen={setOptionChousen}/>
-            {hasError && <span className='input_error'>{error}</span>}
+            <OptionList active={active} isOptionChousen={isOptionChousen} optionList={optionList} setSelectValue={setSelectValue} setOptionChousen={setOptionChousen}/>
+            {hasError && !active ? <span className='input_error'>{error}</span> : null}
         </SelectBox>
-        </>
         
     )
 }
@@ -41,14 +33,16 @@ export const Select: FC<Props> = ({input, meta: {active, touched, error}, id, la
 interface SelectIface {
     hasError: string | boolean
     labelTime: string | boolean
+    isValidate: boolean
     active: boolean
+    error: string|boolean
 }
 
 const SelectBox = styled.div<SelectIface>`
     position: relative;
     font-size: 14px;
     padding: 5px 0;
-    padding-bottom: 35px;
+    padding-bottom: ${({isValidate}) => isValidate ? `25px` : '15px'};
     display: flex;
     flex-direction: column;
     z-index: 5;
@@ -64,7 +58,7 @@ const SelectBox = styled.div<SelectIface>`
         z-index: 10;
         border-radius: 5px;
         cursor: pointer;
-        ${({labelTime, active}) => labelTime && !active ? `
+        ${({labelTime}) => labelTime ? `
             font-size: 14px;
             top: 7px;
             left: 7px;
@@ -97,18 +91,23 @@ const SelectBox = styled.div<SelectIface>`
       color: #E3E3E3;
       font-size: 14px;
   }
-  ${({hasError}) => hasError ? `
+  ${({hasError, active}) => hasError && !active ? `
     input, input:focus{
         border: 2px solid #EB5E55!important;
     }
     label{
         color: #EB5E55;
+            font-size: 14px;
+            top: 7px;
+            left: 7px;
+            margin: 16px 5px;
     }
     span.input_error{
         color: #EB5E55;
         position absolute;
-        bottom: 8px;
+        bottom: 4px;
         left: 17px;
+        font-size: 12px;
     }
   ` : ''}
 `

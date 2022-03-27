@@ -2,19 +2,22 @@ import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Option } from './Option';
 
+
 interface Props {
     active: boolean
     isOptionChousen: any
-    citieslist: Array<{id:string, name:string}>
+    optionList: Array<{id:string, name:string}>
     setSelectValue: any
     setOptionChousen: any
-}    
+}
 
-export const OptionList: FC<Props> = ({active, citieslist, isOptionChousen, setSelectValue, setOptionChousen}) => {
+
+export const OptionList: FC<Props> = ({active, optionList, isOptionChousen, setSelectValue, setOptionChousen}) => {
+    
     return (
-        <OptionListBox active={active} citieslist={citieslist} isOptionChousen={isOptionChousen} >
-                {/* {active?"true":"false"} */}
-                {citieslist.map(option=> 
+        <OptionListBox active={active} optionList={optionList} isOptionChousen={isOptionChousen} >
+                {/* {active?"true":"false"} */ console.log(optionList)}
+                {optionList.map(option=> 
                 <Option 
                 setOptionChousen={setOptionChousen}
                 setSelectValue={setSelectValue}
@@ -29,7 +32,7 @@ export const OptionList: FC<Props> = ({active, citieslist, isOptionChousen, setS
 interface OptionListIface {
     active: boolean
     isOptionChousen: any
-    citieslist: Array<{id:string, name:string}>
+    optionList: Array<{id:string, name:string}>
 }
   
 const OptionListBox = styled.div<OptionListIface>`

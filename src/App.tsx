@@ -1,21 +1,18 @@
 import './App.css';
 import Button from './components/common/Button/Button';
 import { FC, useState } from 'react';
-import FormReduxForm from './components/Form/Form';
+import FormConteinerWrap from './components/Form/FormContainer';
 
 
 const App = () => {
 
   let [portionNumber, setPortionNumber] = useState(false)
 
-  let onSubmit = () => console.log('sdfsd')
-  
-
   return (
     <div className="App">
       <header className="App-header">
           {/* <Button width="440px" disabled={false} loading={portionNumber} text={"Пример текста"}/> */}
-          <FormReduxForm onSubmit={onSubmit}/>
+          <FormConteinerWrap/>
           <button onClick={() => setPortionNumber(!portionNumber)}>trigger</button>
       </header>
     </div>
