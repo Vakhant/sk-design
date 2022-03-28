@@ -1,7 +1,8 @@
 @font-face{font-family: OpenSans-Regular; src: url(assets/fonts/OpenSans-Regular.ttf)}
 
-body {
+body, html {
   margin: 0;
+  font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, 'OpenSans-Regular', 'Roboto', 
     sans-serif;
   -webkit-font-smoothing: antialiased;

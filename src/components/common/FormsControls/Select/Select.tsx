@@ -22,7 +22,7 @@ export const Select: FC<MainFormInputsProps & SelectProps> =
         <SelectBox error={error} isValidate={isValidate} active={active} labelTime={labelTime} hasError={hasError}>
             <input {...input} {...props} id={id} value={selectValue} readOnly={true}></input>
             <label htmlFor={id}>{label?label:'От куда узнали про нас?'}</label>
-            <SVGSelectArrow active={active}/>
+            <SVGSelectArrow inSelect={true} active={active}/>
             <OptionList active={active} isOptionChousen={isOptionChousen} optionList={optionList} setSelectValue={setSelectValue} setOptionChousen={setOptionChousen}/>
             {hasError && !active ? <span className='input_error'>{error}</span> : null}
         </SelectBox>

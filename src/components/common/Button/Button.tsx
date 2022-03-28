@@ -1,16 +1,19 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 import logo from './loader.gif';
 
 interface Props {
   width?: string | undefined
   text: string
-  loading: boolean
   disabled: boolean
+  reset?: any
 }
-
-const Button: FC<Props> = ({width, disabled, loading, text}) => {
-  return <ButtonBox width={width} loading={loading} disabled={disabled||loading}>
+const Button: FC<Props> = ({reset, width, disabled, text}) => {
+  let [loading, setLoading] = useState(false)
+  let onBtnClick=()=>{
+    setTimeout(()=>{setLoading(true)}, 0)
+    setTimeout(()=>{reset(); setLoading(false)}, 2000)}
+  return <ButtonBox onClick={onBtnClick} width={width} loading={loading} disabled={disabled||loading}>
             {loading ? <img width="30px" src={logo} alt="loading..." /> : text}
         </ButtonBox>
 }
@@ -33,7 +36,7 @@ const ButtonBox = styled.button<ButtonBoxIface>`
   border-radius: 8px;
   outline: 0;
   border: none;
-  
+  transition: .3s;
   background-color: #0086A8;
   color: #fff;
   &:hover{

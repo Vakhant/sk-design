@@ -1,23 +1,31 @@
 import './App.css';
-import Button from './components/common/Button/Button';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import FormConteinerWrap from './components/Form/FormContainer';
+import styled from 'styled-components';
+import { TextBlock } from './components/TextBlock/TextBlock';
 
 
 const App = () => {
 
-  let [portionNumber, setPortionNumber] = useState(false)
 
   return (
     <div className="App">
-      <header className="App-header">
-          {/* <Button width="440px" disabled={false} loading={portionNumber} text={"Пример текста"}/> */}
+      <Wrap>
+          <TextBlock/>
           <FormConteinerWrap/>
-          <button onClick={() => setPortionNumber(!portionNumber)}>trigger</button>
-      </header>
+      </Wrap>
     </div>
   );
 }
 
+const Wrap = styled.div`
+  width: 1440px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  margin: 0 auto;
+`
 
 export default App;

@@ -1,17 +1,24 @@
 import React from "react";
 import FormReduxForm from './Form';
 import { connect } from 'react-redux';
-import { getCitiesList, getHowFindOutList } from '../../redux/form-reducer';
+import { getCitiesList, getHowFindOutList} from '../../redux/formPage-reducer';
 
 
 
 class FormContainer extends React.Component {
   componentDidMount(){
-    // this.props.getCitiesList();
+    this.props.getCitiesList();
+    this.props.getHowFindOutList();
   }
-  onSubmit = () => console.log('sdfsd')
+  onSubmit = (formData) => console.log(formData)
   
-  render(){return(<FormReduxForm  onSubmit={this.onSubmit} howFindOutList={this.props.howFindOutList} citiesList={this.props.citiesList}/>)}
+  render(){
+    if(this.props.howFindOutList.length == 0 && this.props.citiesList.length == 0){
+      return <>'прелоадер'</>
+    }
+    return(
+    <FormReduxForm  onSubmit={this.onSubmit} howFindOutList={this.props.howFindOutList} citiesList={this.props.citiesList}/>
+    )}
 }
 
 const mapStateToProps = (state) => ({

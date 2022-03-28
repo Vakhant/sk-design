@@ -13,10 +13,8 @@ interface Props {
 
 
 export const OptionList: FC<Props> = ({active, optionList, isOptionChousen, setSelectValue, setOptionChousen}) => {
-    
     return (
         <OptionListBox active={active} optionList={optionList} isOptionChousen={isOptionChousen} >
-                {/* {active?"true":"false"} */ console.log(optionList)}
                 {optionList.map(option=> 
                 <Option 
                 setOptionChousen={setOptionChousen}
