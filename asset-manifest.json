@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sk-design/static/css/main.58da5702.css",
+    "main.js": "/sk-design/static/js/main.9481d65b.js",
+    "static/media/OpenSans-Regular.ttf": "/sk-design/static/media/OpenSans-Regular.d7d7b8359eeb9cddfba6.ttf",
+    "static/media/loader.gif": "/sk-design/static/media/loader.49ae997c3f81a77be7e8.gif",
+    "index.html": "/sk-design/index.html",
+    "main.58da5702.css.map": "/sk-design/static/css/main.58da5702.css.map",
+    "main.9481d65b.js.map": "/sk-design/static/js/main.9481d65b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58da5702.css",
+    "static/js/main.9481d65b.js"
+  ]
+}
